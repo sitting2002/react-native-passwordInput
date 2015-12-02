@@ -5,21 +5,28 @@
 import React,{StyleSheet,View,TextInput,Text } from 'react-native';
 var styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    inputItem: {
         borderWidth: 1,
-        justifyContent: 'center'
+        height: 45,
+        width: 45,
+        borderColor: '#ccc',
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    input: {
-        height: 43,
-        marginLeft: 10,
-        flex: 1
+    inputItemBorderLeftWidth: {
+        borderLeftWidth: 0
     },
-    icon: {
-        color: '#ccc',
-        width: 25,
-        fontSize: 17
+    iconStyle: {
+        width: 16,
+        height: 16,
+        backgroundColor: '#222',
+        borderRadius: 8,
     },
 });
+
 export default React.createClass({
     getInitialState(){
         return {
@@ -53,9 +60,9 @@ export default React.createClass({
             }
             else {
                 inputItem.push(
-                    <View key={i} style={[styles.inputItem,this.props.inputItem]}>
+                    <View key={i} style={[styles.inputItem,styles.inputItemBorderLeftWidth,this.props.inputItem]}>
                         {i < text.length ?
-                            <View style={[styles.iconStyle,styles.inputItemBorderLeftWidth]}>
+                            <View style={[styles.iconStyle]}>
                             </View> : null}
                     </View>)
             }

@@ -1,6 +1,6 @@
 {
-  "name": "react-native-passwordInput",
-  "version": "1.0.0",
+  "name": "react-native-input-password",
+  "version": "1.0.2",
   "description": "采用React Native开发，仿支付宝付款密码输入框",
   "main": "passwordInput",
   "scripts": {
@@ -11,8 +11,9 @@
     "url": "git+https://github.com/chenchunyong/react-native-passwordInput.git"
   },
   "keywords": [
-    "react",
-    "native"
+    "react native",
+    "TextInput",
+    "支付宝支付密码输入框"
   ],
   "author": "chenchunyong",
   "license": "ISC",
