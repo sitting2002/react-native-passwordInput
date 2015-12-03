@@ -1,7 +1,7 @@
 # react-native-passwordInput
 采用React Native开发，仿支付宝付款密码输入框
 
-![仿支付宝密码输入框](https://github.com/chenchunyong/react-native-passwordInput/raw/master/password.jpg)
+![仿支付宝密码输入框](https://github.com/chenchunyong/react-native-passwordInput/raw/master/password.png)
 
 # Install
  
