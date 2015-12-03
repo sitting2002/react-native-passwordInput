@@ -5,19 +5,21 @@
 import React,{StyleSheet,View,TextInput,Text } from 'react-native';
 var styles = StyleSheet.create({
     container: {
-        alignItems: 'center'
+        alignItems: 'center',
+        flexDirection: 'row',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        backgroundColor: '#fff'
     },
     inputItem: {
-        borderWidth: 1,
         height: 45,
         width: 45,
-        borderColor: '#ccc',
-        backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center'
     },
     inputItemBorderLeftWidth: {
-        borderLeftWidth: 0
+        borderLeftWidth: 1,
+        borderColor: '#ccc',
     },
     iconStyle: {
         width: 16,
@@ -34,18 +36,16 @@ export default React.createClass({
         };
     },
     render(){
-        return <View style={styles.container}>
+        return <View style={[styles.container,this.props.style]}>
             <TextInput
                 maxLength={this.props.maxLength}
                 autoFocus={true}
                 keyboardType="numeric"
                 onChangeText={(text)=>this.setState({text})}
             />
-            <View style={{flexDirection:'row'}}>
-                {
-                    this._getInputItem()
-                }
-            </View>
+            {
+                this._getInputItem()
+            }
         </View>
     },
     _getInputItem(){
@@ -54,15 +54,15 @@ export default React.createClass({
         for (let i = 0; i < parseInt(this.props.maxLength); i++) {
             if (i == 0) {
                 inputItem.push(
-                    <View key={i} style={[styles.inputItem,this.props.inputItem]}>
-                        {i < text.length ? <View style={styles.iconStyle}></View> : null}
+                    <View key={i} style={[styles.inputItem,this.props.inputItemStyle]}>
+                        {i < text.length ? <View style={[styles.iconStyle,this.props.iconStyle]}></View> : null}
                     </View>)
             }
             else {
                 inputItem.push(
-                    <View key={i} style={[styles.inputItem,styles.inputItemBorderLeftWidth,this.props.inputItem]}>
+                    <View key={i} style={[styles.inputItem,styles.inputItemBorderLeftWidth,this.props.inputItemStyle]}>
                         {i < text.length ?
-                            <View style={[styles.iconStyle]}>
+                            <View style={[styles.iconStyle,this.props.iconStyle]}>
                             </View> : null}
                     </View>)
             }
