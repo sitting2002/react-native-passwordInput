@@ -36,12 +36,12 @@ export default React.createClass({
         };
     },
     render(){
-        return <View style={[styles.container,this.props.style]}>
+        return <View style={[styles.container,this.props.style]} >
             <TextInput
                 maxLength={this.props.maxLength}
                 autoFocus={true}
                 keyboardType="numeric"
-                onChangeText={(text)=>this.setState({text})}
+                onChangeText={(text)=>{this.setState({text});this.props.onChange(text)}}
             />
             {
                 this._getInputItem()
