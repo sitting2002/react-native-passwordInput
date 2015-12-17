@@ -2,7 +2,8 @@
  * Created by chenchunyong on 12/2/15.
  */
 
-import React,{StyleSheet,View,TextInput,Text } from 'react-native';
+import React,{StyleSheet,View,TextInput,Text,TouchableHighlight } from 'react-native';
+
 var styles = StyleSheet.create({
     container: {
         alignItems: 'center',
@@ -35,18 +36,27 @@ export default React.createClass({
             text: ''
         };
     },
+    _onPress(){
+        this.refs.textInput.focus();
+    },
+
     render(){
-        return <View style={[styles.container,this.props.style]} >
-            <TextInput
-                maxLength={this.props.maxLength}
-                autoFocus={true}
-                keyboardType="numeric"
-                onChangeText={(text)=>{this.setState({text});this.props.onChange(text)}}
-            />
-            {
-                this._getInputItem()
-            }
-        </View>
+        return(
+            <TouchableHighlight onPress={this._onPress} activeOpacity={1} underlayColor='transparent'>
+                <View style={[styles.container,this.props.style]} >
+                    <TextInput ref='textInput'
+                        maxLength={this.props.maxLength}
+                        autoFocus={true}
+                        keyboardType="numeric"
+                        onChangeText={(text)=>{this.setState({text});this.props.onChange(text)}}
+                        />
+                    {
+                        this._getInputItem()
+                    }
+                </View>
+            </TouchableHighlight>
+        )
+
     },
     _getInputItem(){
         let inputItem = [];
