@@ -49,22 +49,24 @@ export default class Password extends Component {
         onPress={this._onPress.bind(this)}
         activeOpacity={1}
         underlayColor='transparent'>
-        <View style={[styles.container,this.props.style]} >
-          <TextInput
-            ref='textInput'
-            maxLength={this.props.maxLength}
-            autoFocus={false}
-            keyboardType="number-pad"
-            onChangeText={
-              (text) => {
-                this.setState({text});
-                this.props.onChange(text);
-                if (text.length === this.props.maxLength) {
-                  this.props.onEnd(text);
+        <View style={[styles.container,this.props.style]}>
+          <View style={{opacity: 0, width: 0, height: 0}}>
+            <TextInput
+              ref='textInput'
+              maxLength={this.props.maxLength}
+              autoFocus={false}
+              keyboardType="number-pad"
+              onChangeText={
+                (text) => {
+                  this.setState({text});
+                  this.props.onChange(text);
+                  if (text.length === this.props.maxLength) {
+                    this.props.onEnd(text);
+                  }
                 }
               }
-            }
-          />
+            />
+          </View>
           {
             this._getInputItem()
           }
