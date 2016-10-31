@@ -100,6 +100,11 @@ export default class Password extends Component {
   _onPress(){
     this.refs.textInput.focus();
   }
+
+  clear(){
+    this.refs.textInput.clear();
+    this.setState({text: ''});
+  }
 }
 
 const styles = StyleSheet.create({
