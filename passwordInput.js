@@ -12,6 +12,7 @@ import {
   TextInput,
   TouchableHighlight,
   InteractionManager,
+  Text,
 } from 'react-native';
 
 export default class Password extends Component {
@@ -23,6 +24,7 @@ export default class Password extends Component {
     onChange: PropTypes.func,
     onEnd: PropTypes.func,
     autoFocus: PropTypes.bool,
+    isSecureText: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -56,6 +58,7 @@ export default class Password extends Component {
               maxLength={this.props.maxLength}
               autoFocus={false}
               keyboardType="numeric"
+              isSecureText={this.props.isSecureText}
               onChangeText={
                 (text) => {
                   this.setState({text});
@@ -82,19 +85,29 @@ export default class Password extends Component {
       if (i == 0) {
         inputItem.push(
           <View key={i} style={[styles.inputItem,this.props.inputItemStyle]}>
-            {i < text.length ? <View style={[styles.iconStyle,this.props.iconStyle]} /> : null}
+            {this.setupInputText(text, i)}
           </View>)
       }
       else {
         inputItem.push(
           <View key={i} style={[styles.inputItem,styles.inputItemBorderLeftWidth,this.props.inputItemStyle]}>
-            {i < text.length ?
-              <View style={[styles.iconStyle,this.props.iconStyle]}>
-              </View> : null}
+            {this.setupInputText(text, i)}
           </View>)
       }
     }
     return inputItem;
+  }
+
+  setupInputText(text, i) {
+      if (this.props.isSecureText) {
+        return (
+            i < text.length ? <View style={[styles.iconStyle,this.props.iconStyle]} /> : null
+        );
+      } else {
+        return (
+            i < text.length ? <Text style={styles.textStyle}>{text[i]}</Text> : null
+        );
+      }
   }
 
   _onPress(){
@@ -130,5 +143,9 @@ const styles = StyleSheet.create({
     height: 16,
     backgroundColor: '#222',
     borderRadius: 8,
+  },
+  textStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
